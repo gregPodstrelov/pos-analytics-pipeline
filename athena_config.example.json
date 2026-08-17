@@ -1,0 +1,12 @@
+{
+  "database":      "pos_raw_catalog",
+  "output_bucket": "s3://your-company-pos-datalake/athena-results/",
+  "region":        "us-east-1",
+  "aws_access_key": "YOUR_ACCESS_KEY_HERE",
+  "aws_secret_key": "YOUR_SECRET_KEY_HERE",
+
+  "workgroup":                "pos-analytics",
+  "daily_budget_usd":         5.00,
+  "max_scan_gb":              20,
+  "require_partition_filter": true
+}
