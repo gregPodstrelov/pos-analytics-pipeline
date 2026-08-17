@@ -1,0 +1,12 @@
+{
+  "store_id":        "store-001",
+  "watch_folder":    "C:\\RORC\\TLOGExport",
+  "file_pattern":    "*.tlog",
+  "s3_bucket":       "your-company-pos-datalake",
+  "aws_access_key":  "YOUR_ACCESS_KEY_HERE",
+  "aws_secret_key":  "YOUR_SECRET_KEY_HERE",
+  "aws_region":      "us-east-1",
+  "settle_seconds":  3,
+  "log_dir":         "logs",
+  "db_path":         "uploaded_files.db"
+}
