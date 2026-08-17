@@ -1,0 +1,66 @@
+Questions to try once the MCP server is connected.
+
+All figures come from the synthetic catalogue, so the answers are made up -
+what matters is whether the question maps cleanly onto a tool and whether the
+answer states its own limits.
+
+
+MOVERS
+
+  What were the top 20 items by revenue last month?
+  Which departments grew fastest quarter over quarter?
+  What are the top movers in Frozen, by margin rather than revenue?
+  Show me the bottom 50 items by units sold in the last 90 days.
+
+
+LOSSES
+
+  How much did we lose to voids last month, and which store was worst?
+  Which cashiers have the highest void rate?
+  What's the return rate by department?
+  Are voids concentrated at particular times of day?
+
+
+SEASONALITY
+
+  How does Produce this August compare to last August?
+  Which categories peak in December?
+  What's the year-over-year trend for Frozen?
+  Show me monthly revenue for the last 18 months.
+
+
+TENDER AND CUSTOMER MIX
+
+  What departments do EBT food stamp customers buy from most?
+  How does basket size differ between cash and card?
+  What share of revenue is WIC eligible?
+
+
+DEAD STOCK
+
+  What hasn't sold at all in the last 90 days?
+  Which slow movers have the most capital tied up in them?
+
+
+VERIFYING THE NUMBERS
+
+  Do the totals reconcile for last month?
+  What did that query cost?
+
+
+QUESTIONS THAT SHOULD PUSH BACK
+
+These are worth trying because the interesting behaviour is the caveat, not
+the number:
+
+  How many strawberries did we sell in 16 ounce packs last month?
+    - should search across barcodes, group by product rather than SKU, and
+      state how many SKUs matched
+
+  What's our true shrink?
+    - the transaction log only shows voids and returns; real shrink needs
+      inventory data the POS does not have, and the answer should say so
+
+  Which promotions worked best?
+    - depends on whether discounts are written into the log or managed by a
+      separate loyalty platform
