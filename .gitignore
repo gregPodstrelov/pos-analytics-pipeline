@@ -1,0 +1,37 @@
+# Credentials - never commit these
+config.json
+athena_config.json
+redshift_config.json
+upload_credentials.json
+deploy_credentials.json
+*_credentials.json
+credentials.json
+.aws/
+*.pem
+*.key
+
+# Spend tracking
+.athena_spend.json
+
+# Client data - anything derived from a real price book, transaction log or
+# report export. The catalogue in demo/ is synthetic and IS committed; these
+# patterns catch the real inputs it stands in for.
+lblout*.csv
+*price*book*.csv
+*Item_Movement_Report*
+*.tlog
+demo/tlog_files/
+demo/*.db
+demo/real_*
+client-*.md
+client-requirements-email.md
+
+# Local artefacts
+uploaded_files.db
+logs/
+*.log
+__pycache__/
+*.pyc
+.venv/
+venv/
+.DS_Store
