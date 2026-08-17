@@ -1,0 +1,121 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "ReadRawAndReference",
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObject",
+        "s3:GetObjectVersion"
+      ],
+      "Resource": [
+        "arn:aws:s3:::example-pos-datalake/raw/*",
+        "arn:aws:s3:::example-pos-datalake/reference/*",
+        "arn:aws:s3:::example-pos-datalake/scripts/*"
+      ]
+    },
+    {
+      "Sid": "ReadBackWhatItWrote",
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObject",
+        "s3:GetObjectVersion"
+      ],
+      "Resource": [
+        "arn:aws:s3:::example-pos-datalake/processed/*",
+        "arn:aws:s3:::example-pos-datalake/rollup_item/*",
+        "arn:aws:s3:::example-pos-datalake/rollup_dept/*"
+      ]
+    },
+    {
+      "Sid": "ListBucket",
+      "Effect": "Allow",
+      "Action": [
+        "s3:ListBucket",
+        "s3:GetBucketLocation"
+      ],
+      "Resource": "arn:aws:s3:::example-pos-datalake"
+    },
+    {
+      "Sid": "WriteDerivedOnly",
+      "Effect": "Allow",
+      "Action": [
+        "s3:PutObject",
+        "s3:DeleteObject",
+        "s3:AbortMultipartUpload"
+      ],
+      "Resource": [
+        "arn:aws:s3:::example-pos-datalake/processed/*",
+        "arn:aws:s3:::example-pos-datalake/rollup_item/*",
+        "arn:aws:s3:::example-pos-datalake/rollup_dept/*",
+        "arn:aws:s3:::example-pos-datalake/tmp/*"
+      ]
+    },
+    {
+      "Sid": "AthenaResultsForReconciliation",
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObject",
+        "s3:PutObject",
+        "s3:AbortMultipartUpload"
+      ],
+      "Resource": "arn:aws:s3:::example-pos-datalake/athena-results/*"
+    },
+    {
+      "Sid": "NeverTouchRaw",
+      "Effect": "Deny",
+      "Action": [
+        "s3:PutObject",
+        "s3:DeleteObject"
+      ],
+      "Resource": [
+        "arn:aws:s3:::example-pos-datalake/raw/*",
+        "arn:aws:s3:::example-pos-datalake/reference/*"
+      ]
+    },
+    {
+      "Sid": "ReconcileQueriesInThisWorkgroupOnly",
+      "Effect": "Allow",
+      "Action": [
+        "athena:StartQueryExecution",
+        "athena:StopQueryExecution",
+        "athena:GetQueryExecution",
+        "athena:GetQueryResults",
+        "athena:GetQueryResultsStream",
+        "athena:GetWorkGroup"
+      ],
+      "Resource": "arn:aws:athena:us-east-1:123456789012:workgroup/pos-analytics"
+    },
+    {
+      "Sid": "Catalogue",
+      "Effect": "Allow",
+      "Action": [
+        "glue:GetDatabase",
+        "glue:GetDatabases",
+        "glue:GetTable",
+        "glue:GetTables",
+        "glue:CreateTable",
+        "glue:UpdateTable",
+        "glue:GetPartition",
+        "glue:GetPartitions",
+        "glue:BatchCreatePartition",
+        "glue:CreatePartition"
+      ],
+      "Resource": [
+        "arn:aws:glue:us-east-1:123456789012:catalog",
+        "arn:aws:glue:us-east-1:123456789012:database/pos_analytics",
+        "arn:aws:glue:us-east-1:123456789012:table/pos_analytics/*"
+      ]
+    },
+    {
+      "Sid": "Logs",
+      "Effect": "Allow",
+      "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+      ],
+      "Resource": "arn:aws:logs:us-east-1:123456789012:log-group:/aws-glue/*"
+    }
+  ]
+}
