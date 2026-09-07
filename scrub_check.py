@@ -47,6 +47,22 @@ PATTERNS = [
     # --- real data files -------------------------------------------------
     (r"lblout[-_]?\d*[-_]?csv",           "client price book export"),
     (r"Item_Movement_Report",             "client movement report export"),
+
+    # --- real brands and suppliers ---------------------------------------
+    # Names that appeared in the client's price book and movement reports.
+    # One of these survived the first scrub in a code comment, because the
+    # patterns above only knew about identifiers and file names - a real brand
+    # in a sentence looks like ordinary prose.
+    #
+    # This list is maintained by hand and is therefore incomplete by nature.
+    # Anything naming a specific product, supplier or brand in a comment
+    # should be generalised rather than added here; the list is a backstop,
+    # not a substitute for not writing them down.
+    (r"(?i)\bdriscoll",                   "real brand name"),
+    (r"(?i)east-west produce",            "real supplier name"),
+    (r"(?i)carl brandt",                  "real supplier name"),
+    (r"(?i)\bhakushu\b",                  "real product name"),
+    (r"(?i)\bpervotsvet\b",               "real product name"),
 ]
 
 # Files that legitimately contain trigger words - this script names the
